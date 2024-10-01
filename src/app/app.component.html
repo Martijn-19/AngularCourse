@@ -6,6 +6,17 @@
   <ul>
     <li > {{foodtype?.foodId}} - {{foodtype?.foodName}} {{foodtype?.foodDescription}}</li>
   </ul>
+    <h1>Hi there fill out this quick survey</h1>
+    <input type="text" class="text" placeholder="naam..." (keyup)="handleKey($event)">
+    <h3>{{this.city}}</h3>
+    <h1>other method</h1>
+  <input #txtfield type="text" class="input-lg" placeholder="naam...">
+  <button (click)="handleHash(txtfield)">Add city</button>
+
+  <input [(ngModel)]="color" type ='text' class="input-lg" placeholder="enter a color">
+
+  <div style="width: 250px; height:250px " [style.background-color]="color" >
+  </div>
 </main>
 
 <router-outlet />

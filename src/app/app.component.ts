@@ -3,11 +3,12 @@ import { NgFor } from '@angular/common';
 import { City } from "../shared/city.models";
 import { IFoodType } from "../shared/foodtype.models";
 import {Component, OnInit} from "@angular/core";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgFor, ],
+  imports: [RouterOutlet, NgFor, FormsModule,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
   city: string = '';
   cities: City[] = [];
   foodtype?: IFoodType;
+  color: string = '';
 
 
 
@@ -43,5 +45,20 @@ export class AppComponent implements OnInit {
 
   showDetails(city: City) {
     console.log(city.id, city.name, city.population);
+  }
+
+  handleKey(event: any) {
+    this.city = event.target.value;
+  }
+
+  handleHash(txtfield: HTMLInputElement) {
+    this.city = txtfield.value;
+    let city : City = new City(
+      this.cities.length + 1,
+      this.city,
+      "onbekend"
+    )
+    this.cities.push(city);
+    txtfield.value = "";
   }
 }
